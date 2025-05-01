@@ -1,0 +1,6 @@
+PyYAML
+requests
+streamlit
+openai
+langchain
+pydantic_ai

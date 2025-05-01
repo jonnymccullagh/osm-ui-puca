@@ -1,0 +1,6 @@
+[theme]
+# primaryColor = "#4CAF50"  # Primary color (green in this case)
+# backgroundColor = "#FFFFFF"  # App background color
+# secondaryBackgroundColor = "#F0F2F6"  # Sidebars and secondary sections
+# textColor = "#000000"  # General text color
+# font = "sans serif"  # Default font ('sans serif', 'serif', or 'monospace')

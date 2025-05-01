@@ -1,0 +1,38 @@
+services:
+  osm-mcp-puca:
+    image: redbranch/osm-mcp-puca:latest
+    container_name: osm-mcp-puca
+    restart: unless-stopped
+    # ports:
+    #   - 3300:8000
+    logging:
+      options:
+        max-size: 10m
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8000/sse || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+  osm-ui-puca:
+    image: redbranch/osm-ui-puca:latest
+    container_name: osm-ui-puca
+    depends_on:
+      - osm-mcp-puca
+    restart: unless-stopped
+    ports:
+      - 3301:8501
+    logging:
+      options:
+        max-size: 10m
+    environment:
+      - MCP_SERVER_URL=http://osm-mcp-puca:8000
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://osm-mcp-puca:8000 || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+networks:
+  default:
+    name: puca_network

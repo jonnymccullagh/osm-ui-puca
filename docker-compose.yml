@@ -1,0 +1,11 @@
+services:
+  osm-ui-puca:
+    image: redbranch/osm-ui-puca:latest
+    container_name: osm-ui-puca
+    hostname: osm-ui-puca
+    restart: unless-stopped
+    ports:
+      - 3301:8501
+    logging:
+      options:
+        max-size: 10m
