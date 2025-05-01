@@ -62,19 +62,20 @@ async def main():
         with st.chat_message(message["role"]):
             st.markdown(message["content"])
 
-    if prompt := st.chat_input("Ask me anything?"):
-        with st.chat_message("user"):
-            st.markdown(prompt)
-        st.session_state.messages.append({"role": "user", "content": prompt})
-        with st.chat_message("assistant"):
-            response = await agent.run(
-                user_prompt=prompt, message_history=st.session_state.history
-            )
-            st.session_state.messages.append(
-                {"role": "assistant", "content": response.output}
-            )
-            st.session_state.history = response.all_messages()
-            st.markdown(response.output)
+    async with agent.run_mcp_servers():
+        if prompt := st.chat_input("Ask me anything?"):
+            with st.chat_message("user"):
+                st.markdown(prompt)
+            st.session_state.messages.append({"role": "user", "content": prompt})
+            with st.chat_message("assistant"):
+                response = await agent.run(
+                    user_prompt=prompt, message_history=st.session_state.history
+                )
+                st.session_state.messages.append(
+                    {"role": "assistant", "content": response.output}
+                )
+                st.session_state.history = response.all_messages()
+                st.markdown(response.output)
 
 
 if __name__ == "__main__":

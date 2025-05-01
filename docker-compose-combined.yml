@@ -26,6 +26,7 @@ services:
       options:
         max-size: 10m
     environment:
+      - OPENAI_API_KEY=value
       - MCP_SERVER_URL=http://osm-mcp-puca:8000
     healthcheck:
       test: ["CMD-SHELL", "curl -f http://osm-mcp-puca:8000 || exit 1"]
