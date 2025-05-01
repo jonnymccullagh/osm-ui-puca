@@ -30,4 +30,4 @@ jobs:
     - name: Build and Push Docker Image
       run: |
         docker build -t redbranch/osm-ui-puca:${{ env.VERSION }} -t redbranch/osm-ui-puca:latest .
-        docker push redbranch/osm-mcp-puca
+        docker push redbranch/osm-ui-puca
