@@ -9,7 +9,8 @@ COPY . /app/
 
 # Install uv and your required Python libraries (fastmcp, httpx)
 RUN pip install --no-cache-dir uv
-RUN uv pip install -r requirements.txt
+RUN uv venv /app/venv
+RUN /app/venv/bin/pip install -r requirements.txt
 
 # Expose the port that will be used (can also be set via the .env file)
 EXPOSE 8501
